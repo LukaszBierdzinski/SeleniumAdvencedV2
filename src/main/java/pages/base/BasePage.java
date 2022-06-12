@@ -1,11 +1,15 @@
 package pages.base;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 
 public class BasePage {
 
@@ -16,9 +20,32 @@ public class BasePage {
         actions = new Actions(driver);
     }
 
-    WebDriver driver;
+    public WebDriver driver;
+    public WebDriverWait wait;
+    public Actions actions;
 
-    WebDriverWait wait;
+    public void sendKeys(WebElement element, String text){
+        System.out.println("Typing: " + text);
+        element.sendKeys(text);
+    }
 
-    Actions actions;
+    public void sendKeysWithClear(WebElement element, String text){
+        System.out.println("Clearing input");
+        element.clear();
+        sendKeys(element, text);
+    }
+
+    public void click(WebElement element){
+        System.out.println("Clicking: " + element.getText());
+        element.click();
+    }
+
+    public void weitToBeVisible(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    private WebElement getRandomElement(List<WebElement> elements){
+        return elements.get(new Random().nextInt(elements.size()));
+    }
+
 }
