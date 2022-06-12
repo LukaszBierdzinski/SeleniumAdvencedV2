@@ -44,7 +44,7 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public WebElement getRandomElement(List<WebElement> elements){
+    private WebElement getRandomElement(List<WebElement> elements){
         return elements.get(new Random().nextInt(elements.size()));
     }
 
